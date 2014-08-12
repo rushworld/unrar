@@ -1,0 +1,23 @@
+#! /bin/bash
+
+if [ $# -gt 1 ]
+then
+	echo "Syntax: test <directory>"
+elif [ $# -eq 1 ]
+then
+	UNRARDIR=$1
+else
+	UNRARDIR=$PWD
+fi
+
+if [ $UNRARDIR ]
+then
+	echo "Please confirm the directory as $UNRARDIR [Y=YES]"
+	read CONFIRM
+	if [ "$CONFIRM" = "y" ] || [ "$CONFIRM" = "Y" ]
+	then
+		find $UNRARDIR -name "*.rar" -exec echo -y x {} \;
+	else
+		echo "Cancelled."
+	fi
+fi
